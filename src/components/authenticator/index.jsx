@@ -31,6 +31,7 @@ const Authenticator = () => {
     return <div>Loading...</div>;
   }
 
+  // Não tá redirecionando quando o usuário tá deslogado
   if (isAuthenticated === false) {
     <Switch>
       <Route path="/">
