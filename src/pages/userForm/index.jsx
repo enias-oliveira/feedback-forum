@@ -20,6 +20,7 @@ const UserForm = () => {
     password: yup
       .string()
       .min(6, "Mínimo de 6 dígitos")
+      .matches(/(?=(?:.*[!@#$%^&*()\-_=+{};:,<.>]){1,})/gm)
       .required("Campo obrigatório"), // FALTA VERIFICAR CARACTER ESPECIAL
     password_confirmation: yup
       .string()
