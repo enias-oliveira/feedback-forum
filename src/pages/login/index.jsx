@@ -1,8 +1,9 @@
+import axios from "axios";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import axios from "axios";
+import { useHistory } from "react-router-dom";
 
-const Login = () => {
+const Login = ({ setAuthentication }) => {
   const {
     register,
     unregister,
@@ -22,10 +23,16 @@ const Login = () => {
     };
   }, [register, unregister]);
 
+  const history = useHistory();
+
   const tryLogin = (data) => {
     axios
       .post("https://ka-users-api.herokuapp.com/authenticate", { ...data })
-      .then((res) => console.log(res))
+      .then((res) => {
+        window.localStorage.setItem("authToken", res.data.auth_token);
+        setAuthentication(true);
+        history.push("/users");
+      })
       .catch((err) =>
         setError("password", {
           message: err.response.data.error.user_authentication,
