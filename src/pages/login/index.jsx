@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 
 const Login = () => {
   const {
@@ -20,8 +21,16 @@ const Login = () => {
       unregister("password");
     };
   }, [register, unregister]);
+
   const tryLogin = (data) => {
-    console.log(data);
+    axios
+      .post("https://ka-users-api.herokuapp.com/authenticate", { ...data })
+      .then((res) => console.log(res))
+      .catch((err) =>
+        setError("password", {
+          message: err.response.data.error.user_authentication,
+        })
+      );
   };
 
   return (
@@ -29,10 +38,12 @@ const Login = () => {
       <div>
         <label>User:</label>
         <input onChange={(e) => setValue("user", e.target.value)} />
+        {errors.user && <p>{errors.user.message}</p>}
       </div>
       <div>
         <label>Password:</label>
         <input onChange={(e) => setValue("password", e.target.value)} />
+        {errors.user && <p>{errors.user.message}</p>}
       </div>
       <button type="Submit">Login</button>
     </form>
