@@ -8,7 +8,9 @@ import styled from "styled-components";
 const Users = () => {
   const [users, setUsers] = useState([]);
 
-  useEffect(() => getUsers(setUsers), [users]);
+  useEffect(() => {
+    getUsers(setUsers);
+  }, [setUsers]);
 
   return (
     <div>
