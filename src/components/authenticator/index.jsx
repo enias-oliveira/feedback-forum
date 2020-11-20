@@ -34,14 +34,16 @@ const Authenticator = () => {
 
   // Não tá redirecionando quando o usuário tá deslogado
   if (isAuthenticated === false) {
-    <Switch>
-      <Route path="/">
-        <Login setAuthentication={setAuthentication} />
-      </Route>
-      <Route exact path="/userform">
-        <UserForm />
-      </Route>
-    </Switch>;
+    return (
+      <Switch>
+        <Route exact path="/userform">
+          <UserForm />
+        </Route>
+        <Route path="/">
+          <Login setAuthentication={setAuthentication} />
+        </Route>
+      </Switch>
+    );
   }
 
   return (
