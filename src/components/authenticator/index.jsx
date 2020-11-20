@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Route, Switch, useHistory } from "react-router-dom";
 
 import Login from "../../pages/login";
+import UserForm from "../../pages/userForm";
 import Users from "../../pages/users";
 import axios from "axios";
 
@@ -28,7 +29,7 @@ const Authenticator = () => {
     }
   }, [history, setAuthentication]);
   if (isAuthenticated === undefined) {
-    return <div>Loading...</div>;
+    return <div>Carregando...</div>;
   }
 
   // Não tá redirecionando quando o usuário tá deslogado
@@ -36,6 +37,9 @@ const Authenticator = () => {
     <Switch>
       <Route path="/">
         <Login setAuthentication={setAuthentication} />
+      </Route>
+      <Route exact path="/userform">
+        <UserForm />
       </Route>
     </Switch>;
   }

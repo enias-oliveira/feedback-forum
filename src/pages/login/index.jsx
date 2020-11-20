@@ -33,24 +33,34 @@ const Login = ({ setAuthentication }) => {
         setAuthentication(true);
         history.push("/users");
       })
-      .catch((err) =>
+      .catch((err) => {
+        console.log(err.response);
         setError("password", {
-          message: err.response.data.error.user_authentication,
-        })
-      );
+          message: "Usuário ou senha inválidos",
+        });
+      });
   };
 
   return (
     <form onSubmit={handleSubmit(tryLogin)}>
       <div>
         <label>User:</label>
-        <input onChange={(e) => setValue("user", e.target.value)} />
+        <input
+          onChange={(e) => setValue("user", e.target.value)}
+          ref={register}
+          name="user"
+        />
         {errors.user && <p>{errors.user.message}</p>}
       </div>
       <div>
         <label>Password:</label>
-        <input onChange={(e) => setValue("password", e.target.value)} />
-        {errors.user && <p>{errors.user.message}</p>}
+        <input
+          onChange={(e) => setValue("password", e.target.value)}
+          ref={register}
+          name="password"
+          type="password"
+        />
+        {errors.password && <p>{errors.password.message}</p>}
       </div>
       <button type="Submit">Login</button>
     </form>
