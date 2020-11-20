@@ -2,9 +2,15 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
+import { useHistory } from "react-router-dom";
+
+import { postNewUser } from "./helper.js";
+
 const UserForm = () => {
+  const history = useHistory();
+
   const handleForm = (data) => {
-    console.log(data);
+    postNewUser(data, history);
   };
 
   const schema = yup.object().shape({
