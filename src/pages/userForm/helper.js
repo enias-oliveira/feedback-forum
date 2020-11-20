@@ -6,10 +6,8 @@ export const postNewUser = (
   { name, user, email, password, password_confirmation },
   history
 ) => {
-  console.log({ user, password });
-
   axios
-    .post(apiBaseUrl, {
+    .post(`${apiBaseUrl}/users`, {
       user: {
         name: name,
         user: user,
