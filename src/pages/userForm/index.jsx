@@ -12,16 +12,19 @@ const UserForm = () => {
     name: yup
       .string()
       .matches(
-        /^[a-zÀ-ÿ ,.'-]+$/i,
-        "Nome não pode ter números nem caracteres especiais"
+        /^(.[a-zÀ-ÿ].+\s).+$/i,
+        "Nome precisa ser completo e sem caracteres especiais"
       )
-      .required("Campo obrigatório"), // FALTA VERIFICAR SE TEM 2 PALAVRAS
+      .required("Campo obrigatório"),
     email: yup.string().email().required("Campo obrigatório"),
     password: yup
       .string()
       .min(6, "Mínimo de 6 dígitos")
-      .matches(/(?=(?:.*[!@#$%^&*()\-_=+{};:,<.>]){1,})/gm)
-      .required("Campo obrigatório"), // FALTA VERIFICAR CARACTER ESPECIAL
+      .matches(
+        /(^(?=.*?[#?!@$%^&*-]).{6,}$)/gm,
+        "Senha precisa de pelo menos 1 caracter especial"
+      )
+      .required("Campo obrigatório"),
     password_confirmation: yup
       .string()
       .oneOf([yup.ref("password")], "Senhas não são iguais"),
