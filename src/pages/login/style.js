@@ -6,9 +6,9 @@ export const Formulario = styled.div`
     justify-content: center;
   }
 
-  button {
-    display: block;
-    margin: 0 auto;
+  .buttons {
+    display: flex;
+    justify-content: space-around;
   }
 
   .login-form {

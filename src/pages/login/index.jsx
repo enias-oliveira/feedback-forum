@@ -94,9 +94,17 @@ const Login = ({ setAuthentication }) => {
             {errors.password && (
               <p style={{ color: "red " }}>{errors.password.message}</p>
             )}
-            <Button variant="primary" type="Submit">
-              Login
-            </Button>
+            <div className="buttons">
+              <Button variant="primary" type="Submit">
+                Login
+              </Button>
+              <Button
+                variant="primary"
+                onClick={() => history.push("/userform")}
+              >
+                Cadastrar-se
+              </Button>
+            </div>
           </form>
         </Container>
       </Formulario>
