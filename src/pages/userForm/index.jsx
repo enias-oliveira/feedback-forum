@@ -6,8 +6,14 @@ import * as yup from "yup";
 import { useHistory } from "react-router-dom";
 
 import { postNewUser } from "./helper.js";
+import { Formulario } from "./style";
 import Navigation from "../../components/navbar";
 
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import InputGroup from "react-bootstrap/InputGroup";
+import FormControl from "react-bootstrap/FormControl";
+import Button from "react-bootstrap/Button";
 const UserForm = () => {
   const [err, useErr] = useState("");
   const history = useHistory();
@@ -46,65 +52,102 @@ const UserForm = () => {
   return (
     <>
       <Navigation />
-      <form onSubmit={handleSubmit(handleForm)}>
-        <div>
-          Usuário:
-          <div>
-            <input name="user" ref={register} placeholder="Usuário" />
-            <p style={{ color: "red" }}>
-              {errors.user?.message}
-              {err.data?.user}
-            </p>
-          </div>
-        </div>
+      <Formulario>
+        <Container>
+          <form onSubmit={handleSubmit(handleForm)}>
+            <Row>
+              <label for="user">
+                Usuário:
+                <InputGroup>
+                  <div>
+                    <FormControl
+                      name="user"
+                      ref={register}
+                      placeholder="Usuário"
+                    />
+                    <p style={{ color: "red" }}>
+                      {errors.user?.message}
+                      {err.data?.user}
+                    </p>
+                  </div>
+                </InputGroup>
+              </label>
+            </Row>
 
-        <div>
-          Nome Completo:
-          <div>
-            <input name="name" ref={register} placeholder="Nome" />
-            <p style={{ color: "red" }}>{errors.name?.message}</p>
-          </div>
-        </div>
+            <Row>
+              <label for="name">
+                Nome Completo:
+                <InputGroup>
+                  <div>
+                    <FormControl
+                      name="name"
+                      ref={register}
+                      placeholder="Nome"
+                    />
+                    <p style={{ color: "red" }}>{errors.name?.message}</p>
+                  </div>
+                </InputGroup>
+              </label>
+            </Row>
 
-        <div>
-          Email:
-          <div>
-            <input placeholder="Email" name="email" ref={register} />
-            <p style={{ color: "red" }}>{errors.email?.message}</p>
-          </div>
-        </div>
+            <Row>
+              <label for="email">
+                Email:
+                <InputGroup>
+                  <div>
+                    <FormControl
+                      placeholder="Email"
+                      name="email"
+                      ref={register}
+                    />
+                    <p style={{ color: "red" }}>{errors.email?.message}</p>
+                  </div>
+                </InputGroup>
+              </label>
+            </Row>
 
-        <div>
-          Senha:
-          <div>
-            <input
-              placeholder="Sua senha"
-              name="password"
-              ref={register}
-              type="password"
-            />
-            <p style={{ color: "red" }}>{errors.password?.message}</p>
-          </div>
-        </div>
+            <Row>
+              <label for="password">
+                Senha:
+                <InputGroup>
+                  <div>
+                    <FormControl
+                      placeholder="Sua senha"
+                      name="password"
+                      ref={register}
+                      type="password"
+                    />
+                    <p style={{ color: "red" }}>{errors.password?.message}</p>
+                  </div>
+                </InputGroup>
+              </label>
+            </Row>
 
-        <div>
-          Confirmar senha:
-          <div>
-            <input
-              placeholder="Confirmar senha"
-              name="password_confirmation"
-              type="password"
-              ref={register}
-            />
-            <p style={{ color: "red" }}>
-              {errors.password_confirmation?.message}
-            </p>
-          </div>
-        </div>
-        <div>
-          <button type="submit">Enviar</button>
-        </div>
-      </form>
+            <Row>
+              <label for="password_confirm">
+                Confirmar senha:
+                <InputGroup>
+                  <div>
+                    <FormControl
+                      placeholder="Confirmar senha"
+                      name="password_confirmation"
+                      type="password"
+                      ref={register}
+                    />
+                    <p style={{ color: "red" }}>
+                      {errors.password_confirmation?.message}
+                    </p>
+                  </div>
+                </InputGroup>
+              </label>
+            </Row>
+
+            <div>
+              <Button type="submit">Enviar</Button>
+            </div>
+          </form>
+        </Container>
+      </Formulario>
     </>
   );
 };
