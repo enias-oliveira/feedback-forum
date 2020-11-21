@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
@@ -7,10 +8,11 @@ import { useHistory } from "react-router-dom";
 import { postNewUser } from "./helper.js";
 
 const UserForm = () => {
+  const [err, useErr] = useState("");
   const history = useHistory();
 
   const handleForm = (data) => {
-    postNewUser(data, history);
+    postNewUser(data, history, useErr);
   };
 
   const schema = yup.object().shape({
@@ -46,7 +48,10 @@ const UserForm = () => {
         Usuário:
         <div>
           <input name="user" ref={register} placeholder="Usuário" />
-          <p style={{ color: "red" }}>{errors.user?.message}</p>
+          <p style={{ color: "red" }}>
+            {errors.user?.message}
+            {err.data?.user}
+          </p>
         </div>
       </div>
 

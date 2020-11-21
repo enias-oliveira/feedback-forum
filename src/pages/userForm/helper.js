@@ -4,7 +4,8 @@ const apiBaseUrl = "https://ka-users-api.herokuapp.com";
 
 export const postNewUser = (
   { name, user, email, password, password_confirmation },
-  history
+  history,
+  setErr
 ) => {
   axios
     .post(`${apiBaseUrl}/users`, {
@@ -22,5 +23,5 @@ export const postNewUser = (
       },
     })
     .then(() => history.push("/login"))
-    .catch((error) => console.log(error.response)); // Criar FeedBack de erro no Post
+    .catch((error) => setErr(error.response));
 };
