@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 
 import { Formulario } from "./style";
+import Navigation from "../../components/navbar";
 
 import Container from "react-bootstrap/Container";
 import InputGroup from "react-bootstrap/InputGroup";
@@ -50,51 +51,56 @@ const Login = ({ setAuthentication }) => {
   };
 
   return (
-    <Formulario>
-      <Container className="login-form">
-        <form onSubmit={handleSubmit(tryLogin)}>
-          <h1>Login</h1>
-          <div>
-            <InputGroup className="mb-3">
-              <FormControl
-                onChange={(e) => setValue("user", e.target.value)}
-                ref={register}
-                name="user"
-                placeholder="Usuário"
-              />
-              <InputGroup.Append>
-                <InputGroup.Text>
-                  <Person />
-                </InputGroup.Text>
-              </InputGroup.Append>
-            </InputGroup>
-          </div>
-          {errors.user && <p style={{ color: "red" }}>{errors.user.message}</p>}
-          <div>
-            <InputGroup className="mb-3">
-              <FormControl
-                onChange={(e) => setValue("password", e.target.value)}
-                ref={register}
-                name="password"
-                type="password"
-                placeholder="Senha"
-              />
-              <InputGroup.Append>
-                <InputGroup.Text>
-                  <EyeSlash />
-                </InputGroup.Text>
-              </InputGroup.Append>
-            </InputGroup>
-          </div>
-          {errors.password && (
-            <p style={{ color: "red " }}>{errors.password.message}</p>
-          )}
-          <Button variant="primary" type="Submit">
-            Login
-          </Button>
-        </form>
-      </Container>
-    </Formulario>
+    <>
+      <Navigation />
+      <Formulario>
+        <Container className="login-form">
+          <form onSubmit={handleSubmit(tryLogin)}>
+            <h1>Login</h1>
+            <div>
+              <InputGroup className="mb-3">
+                <FormControl
+                  onChange={(e) => setValue("user", e.target.value)}
+                  ref={register}
+                  name="user"
+                  placeholder="Usuário"
+                />
+                <InputGroup.Append>
+                  <InputGroup.Text>
+                    <Person />
+                  </InputGroup.Text>
+                </InputGroup.Append>
+              </InputGroup>
+            </div>
+            {errors.user && (
+              <p style={{ color: "red" }}>{errors.user.message}</p>
+            )}
+            <div>
+              <InputGroup className="mb-3">
+                <FormControl
+                  onChange={(e) => setValue("password", e.target.value)}
+                  ref={register}
+                  name="password"
+                  type="password"
+                  placeholder="Senha"
+                />
+                <InputGroup.Append>
+                  <InputGroup.Text>
+                    <EyeSlash />
+                  </InputGroup.Text>
+                </InputGroup.Append>
+              </InputGroup>
+            </div>
+            {errors.password && (
+              <p style={{ color: "red " }}>{errors.password.message}</p>
+            )}
+            <Button variant="primary" type="Submit">
+              Login
+            </Button>
+          </form>
+        </Container>
+      </Formulario>
+    </>
   );
 };
 

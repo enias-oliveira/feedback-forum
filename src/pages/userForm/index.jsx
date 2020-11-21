@@ -6,6 +6,7 @@ import * as yup from "yup";
 import { useHistory } from "react-router-dom";
 
 import { postNewUser } from "./helper.js";
+import Navigation from "../../components/navbar";
 
 const UserForm = () => {
   const [err, useErr] = useState("");
@@ -43,65 +44,68 @@ const UserForm = () => {
   });
 
   return (
-    <form onSubmit={handleSubmit(handleForm)}>
-      <div>
-        Usuário:
+    <>
+      <Navigation />
+      <form onSubmit={handleSubmit(handleForm)}>
         <div>
-          <input name="user" ref={register} placeholder="Usuário" />
-          <p style={{ color: "red" }}>
-            {errors.user?.message}
-            {err.data?.user}
-          </p>
+          Usuário:
+          <div>
+            <input name="user" ref={register} placeholder="Usuário" />
+            <p style={{ color: "red" }}>
+              {errors.user?.message}
+              {err.data?.user}
+            </p>
+          </div>
         </div>
-      </div>
 
-      <div>
-        Nome Completo:
         <div>
-          <input name="name" ref={register} placeholder="Nome" />
-          <p style={{ color: "red" }}>{errors.name?.message}</p>
+          Nome Completo:
+          <div>
+            <input name="name" ref={register} placeholder="Nome" />
+            <p style={{ color: "red" }}>{errors.name?.message}</p>
+          </div>
         </div>
-      </div>
 
-      <div>
-        Email:
         <div>
-          <input placeholder="Email" name="email" ref={register} />
-          <p style={{ color: "red" }}>{errors.email?.message}</p>
+          Email:
+          <div>
+            <input placeholder="Email" name="email" ref={register} />
+            <p style={{ color: "red" }}>{errors.email?.message}</p>
+          </div>
         </div>
-      </div>
 
-      <div>
-        Senha:
         <div>
-          <input
-            placeholder="Sua senha"
-            name="password"
-            ref={register}
-            type="password"
-          />
-          <p style={{ color: "red" }}>{errors.password?.message}</p>
+          Senha:
+          <div>
+            <input
+              placeholder="Sua senha"
+              name="password"
+              ref={register}
+              type="password"
+            />
+            <p style={{ color: "red" }}>{errors.password?.message}</p>
+          </div>
         </div>
-      </div>
 
-      <div>
-        Confirmar senha:
         <div>
-          <input
-            placeholder="Confirmar senha"
-            name="password_confirmation"
-            type="password"
-            ref={register}
-          />
-          <p style={{ color: "red" }}>
-            {errors.password_confirmation?.message}
-          </p>
+          Confirmar senha:
+          <div>
+            <input
+              placeholder="Confirmar senha"
+              name="password_confirmation"
+              type="password"
+              ref={register}
+            />
+            <p style={{ color: "red" }}>
+              {errors.password_confirmation?.message}
+            </p>
+          </div>
         </div>
-      </div>
-      <div>
-        <button type="submit">Enviar</button>
-      </div>
-    </form>
+        <div>
+          <button type="submit">Enviar</button>
+        </div>
+      </form>
+    </>
   );
 };
 

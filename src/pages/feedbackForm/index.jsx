@@ -7,6 +7,8 @@ import postNewFeedback from "./helper.js";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
+import Navigation from "../../components/navbar";
+
 const FeedbackForm = () => {
   const { register, unregister, setValue, handleSubmit, errors } = useForm();
   const history = useHistory();
@@ -23,27 +25,30 @@ const FeedbackForm = () => {
   };
 
   return (
-    <div>
-      <Form onSubmit={handleSubmit(handleForm)}>
-        <Form.Group>
-          <Form.Control name="name" ref={register} placeholder="Name" />
-          <p style={{ color: "red" }}>{errors.name?.message}</p>
-          <br />
-          <Form.Control name="comment" ref={register} placeholder="Comment" />
-          <p style={{ color: "red" }}>{errors.comment?.message}</p>
-          <br />
-          <Form.Control
-            name="grade"
-            ref={register}
-            placeholder="Grade"
-            type="number"
-          />
-          <p style={{ color: "red" }}>{errors.grade?.message}</p>
-        </Form.Group>
+    <>
+      <Navigation />
+      <div>
+        <Form onSubmit={handleSubmit(handleForm)}>
+          <Form.Group>
+            <Form.Control name="name" ref={register} placeholder="Name" />
+            <p style={{ color: "red" }}>{errors.name?.message}</p>
+            <br />
+            <Form.Control name="comment" ref={register} placeholder="Comment" />
+            <p style={{ color: "red" }}>{errors.comment?.message}</p>
+            <br />
+            <Form.Control
+              name="grade"
+              ref={register}
+              placeholder="Grade"
+              type="number"
+            />
+            <p style={{ color: "red" }}>{errors.grade?.message}</p>
+          </Form.Group>
 
-        <Button type="submit">Submit</Button>
-      </Form>
-    </div>
+          <Button type="submit">Submit</Button>
+        </Form>
+      </div>
+    </>
   );
 };
 
