@@ -20,7 +20,7 @@ const Users = () => {
       <Navigation />
       <Content>
         <Container>
-          <Table variant="dark" size="sm">
+          <Table variant="dark" size="sm" hover responsive>
             <thead>
               <tr>
                 <th key="Name">Name</th>

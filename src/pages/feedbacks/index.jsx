@@ -4,8 +4,8 @@ import { useParams, useHistory } from "react-router-dom";
 
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
-import styled from "styled-components";
-
+import Container from "react-bootstrap/Container";
+import { Content } from "../users/styles.js";
 import Navigation from "../../components/navbar";
 import FeedbacksPagination from "./pagination";
 
@@ -39,26 +39,28 @@ const Feedbacks = () => {
   return (
     <>
       <Navigation />
-      <div>
-        <Table variant="dark" striped responsive hover>
-          <thead>
-            <tr>
-              <th key="id">ID</th>
-              <th key="Name">Name</th>
-              <th key="Comment">Comment</th>
-              <th key="Grade">Grade</th>
-            </tr>
-          </thead>
-          <FeedbackPosts feedbacks={currentFeedbacks} />
-          <FeedbacksPagination
-            paginate={paginate}
-            feedbacksPerPage={feedbacksPerPage}
-            totalFeedbacks={feedbacks.length}
-            currentPage={currentPage}
-          />
-        </Table>
+      <Container>
+        <Content>
+          <Table variant="dark" responsive hover>
+            <thead>
+              <tr>
+                <th key="id">ID</th>
+                <th key="Name">Name</th>
+                <th key="Comment">Comment</th>
+                <th key="Grade">Grade</th>
+              </tr>
+            </thead>
+            <FeedbackPosts feedbacks={currentFeedbacks} />
+          </Table>
+        </Content>
+        <FeedbacksPagination
+          paginate={paginate}
+          feedbacksPerPage={feedbacksPerPage}
+          totalFeedbacks={feedbacks.length}
+          currentPage={currentPage}
+        />
         <Button onClick={() => newFeedback()}>Publicar um Feedback</Button>
-      </div>
+      </Container>
     </>
   );
 };
