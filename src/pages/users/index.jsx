@@ -6,6 +6,7 @@ import Table from "react-bootstrap/Table";
 import Container from "react-bootstrap/Container";
 
 import Navigation from "../../components/navbar";
+import { Content } from "./styles.js";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
@@ -17,7 +18,7 @@ const Users = () => {
   return (
     <>
       <Navigation />
-      <div>
+      <Content>
         <Container>
           <Table variant="dark" size="sm">
             <thead>
@@ -46,7 +47,7 @@ const Users = () => {
             </tbody>
           </Table>
         </Container>
-      </div>
+      </Content>
     </>
   );
 };
