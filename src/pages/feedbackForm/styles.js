@@ -7,7 +7,7 @@ export const Content = styled.div`
 
   .container {
     width: 400px;
-    margin-top: 25vh;
+    margin-top: 10vh;
     background: #fafafa;
     padding: 48px;
     border-radius: 8px;

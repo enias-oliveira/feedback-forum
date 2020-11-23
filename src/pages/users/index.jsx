@@ -7,13 +7,24 @@ import Container from "react-bootstrap/Container";
 
 import Navigation from "../../components/navbar";
 import { Content } from "./styles.js";
+import { UsersPagination } from "../../components/pagination.jsx";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [usersPerPage] = useState(8);
 
   useEffect(() => {
     getUsers(setUsers);
   }, [setUsers]);
+
+  const indexOfLastUser = currentPage * usersPerPage;
+  const indexOfFirstUser = indexOfLastUser - usersPerPage;
+  const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
+
+  const paginate = (PageNumber) => {
+    setCurrentPage(PageNumber);
+  };
 
   return (
     <>
@@ -30,7 +41,7 @@ const Users = () => {
               </tr>
             </thead>
             <tbody>
-              {users?.map((user, idx) => (
+              {currentUsers?.map((user, idx) => (
                 <tr key={idx}>
                   <td style={{ width: "30%" }}>{user.name}</td>
                   <td style={{ width: "30%" }}>{user.user}</td>
@@ -46,6 +57,12 @@ const Users = () => {
               ))}
             </tbody>
           </Table>
+          <UsersPagination
+            usersPerPage={usersPerPage}
+            paginate={paginate}
+            totalUsers={users.length}
+            currentPage={currentPage}
+          />
         </Container>
       </Content>
     </>

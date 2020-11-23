@@ -7,14 +7,14 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import { Content } from "../users/styles.js";
 import Navigation from "../../components/navbar";
-import FeedbacksPagination from "./pagination";
+import { FeedbacksPagination } from "../../components/pagination";
 
 import FeedbackPosts from "./feedback-posts";
 
 const Feedbacks = () => {
   const [feedbacks, setFeedbacks] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [feedbacksPerPage] = useState(10);
+  const [feedbacksPerPage] = useState(8);
 
   const history = useHistory();
   const params = useParams();
@@ -59,7 +59,9 @@ const Feedbacks = () => {
           totalFeedbacks={feedbacks.length}
           currentPage={currentPage}
         />
-        <Button onClick={() => newFeedback()}>Publicar um Feedback</Button>
+        <Button className="mt-3" onClick={() => newFeedback()}>
+          Publicar um Feedback
+        </Button>
       </Container>
     </>
   );
