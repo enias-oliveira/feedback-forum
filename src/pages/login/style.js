@@ -12,7 +12,12 @@ export const Formulario = styled.div`
   }
 
   .login-form {
+    display: flex;
+    align-items: center;
     margin-top: 25vh;
     background: #fafafa;
+    width: 400px;
+    height: 300px;
+    border-radius: 8px;
   }
 `;
