@@ -7,9 +7,14 @@ import Button from "react-bootstrap/Button";
 import styled from "styled-components";
 
 import Navigation from "../../components/navbar";
+import FeedbacksPagination from "./pagination";
+
+import FeedbackPosts from "./feedback-posts";
 
 const Feedbacks = () => {
   const [feedbacks, setFeedbacks] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [feedbacksPerPage] = useState(10);
 
   const history = useHistory();
   const params = useParams();
@@ -18,13 +23,24 @@ const Feedbacks = () => {
     history.push(`/users/feedbacks/${params.id}/new`);
   };
 
+  const indexOfLastFeedback = currentPage * feedbacksPerPage;
+  const indexOfFirstFeedback = indexOfLastFeedback - feedbacksPerPage;
+  const currentFeedbacks = feedbacks.slice(
+    indexOfFirstFeedback,
+    indexOfLastFeedback
+  );
+
+  const paginate = (PageNumber) => {
+    setCurrentPage(PageNumber);
+  };
+
   useEffect(() => getFeedbacks(setFeedbacks, params), [params]);
 
   return (
     <>
       <Navigation />
       <div>
-        <Table variant="dark" size="sm">
+        <Table variant="dark" striped responsive hover>
           <thead>
             <tr>
               <th key="id">ID</th>
@@ -33,16 +49,13 @@ const Feedbacks = () => {
               <th key="Grade">Grade</th>
             </tr>
           </thead>
-          <tbody>
-            {feedbacks?.map(({ id, name, comment, grade }, idx) => (
-              <tr key={idx}>
-                <td>{id}</td>
-                <td>{name}</td>
-                <td>{comment}</td>
-                <td>{grade}</td>
-              </tr>
-            ))}
-          </tbody>
+          <FeedbackPosts feedbacks={currentFeedbacks} />
+          <FeedbacksPagination
+            paginate={paginate}
+            feedbacksPerPage={feedbacksPerPage}
+            totalFeedbacks={feedbacks.length}
+            currentPage={currentPage}
+          />
         </Table>
         <Button onClick={() => newFeedback()}>Publicar um Feedback</Button>
       </div>
