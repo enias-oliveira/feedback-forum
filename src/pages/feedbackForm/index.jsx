@@ -6,11 +6,13 @@ import postNewFeedback from "./helper.js";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
 
 import Navigation from "../../components/navbar";
+import { Content } from "./styles";
 
 const FeedbackForm = () => {
-  const { register, unregister, setValue, handleSubmit, errors } = useForm();
+  const { register, handleSubmit, errors } = useForm();
   const history = useHistory();
   const params = useParams();
 
@@ -27,27 +29,33 @@ const FeedbackForm = () => {
   return (
     <>
       <Navigation />
-      <div>
-        <Form onSubmit={handleSubmit(handleForm)}>
-          <Form.Group>
-            <Form.Control name="name" ref={register} placeholder="Name" />
-            <p style={{ color: "red" }}>{errors.name?.message}</p>
-            <br />
-            <Form.Control name="comment" ref={register} placeholder="Comment" />
-            <p style={{ color: "red" }}>{errors.comment?.message}</p>
-            <br />
-            <Form.Control
-              name="grade"
-              ref={register}
-              placeholder="Grade"
-              type="number"
-            />
-            <p style={{ color: "red" }}>{errors.grade?.message}</p>
-          </Form.Group>
-
-          <Button type="submit">Submit</Button>
-        </Form>
-      </div>
+      <Content>
+        <Container>
+          <h1>Post your feedback</h1>
+          <Form onSubmit={handleSubmit(handleForm)}>
+            <Form.Group>
+              <Form.Control name="name" ref={register} placeholder="Name" />
+              <p style={{ color: "red" }}>{errors.name?.message}</p>
+              <br />
+              <Form.Control
+                name="comment"
+                ref={register}
+                placeholder="Comment"
+              />
+              <p style={{ color: "red" }}>{errors.comment?.message}</p>
+              <br />
+              <Form.Control
+                name="grade"
+                ref={register}
+                placeholder="Grade"
+                type="number"
+              />
+              <p style={{ color: "red" }}>{errors.grade?.message}</p>
+            </Form.Group>
+            <Button type="submit">Submit</Button>
+          </Form>
+        </Container>
+      </Content>
     </>
   );
 };
