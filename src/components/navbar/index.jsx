@@ -11,7 +11,7 @@ const Navigation = () => {
   };
 
   return (
-    <Navbar bg="primary" variant="dark" stick="top">
+    <Navbar bg="primary" variant="dark" stick="top" style={{ width: "100vw" }}>
       <Nav>
         <Nav.Link href="/">Home</Nav.Link>
         <Nav.Link onClick={logoutHandle}>Logout</Nav.Link>

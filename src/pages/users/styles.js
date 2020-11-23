@@ -1,19 +1,16 @@
 import styled from "styled-components";
 
 export const Content = styled.div`
-  .container {
-    margin: 0;
-    padding: 0;
-  }
-
   .table {
-    width: 99vw !important;
+    margin: 2vw 0;
+    width: 100% !important;
+    border-radius: 10px;
   }
 
   td,
   th {
-    max-width: 200px !important;
-    padding: 8px 0 8px 56px;
+    max-width: 20vw !important;
+    padding: 10px 50px 5px 50px;
     word-wrap: break-word;
   }
 `;

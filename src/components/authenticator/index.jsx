@@ -8,6 +8,8 @@ import Feedbacks from "../../pages/feedbacks";
 import FeedbackForm from "../../pages/feedbackForm";
 import axios from "axios";
 
+import Container from "react-bootstrap/Container";
+
 const Authenticator = () => {
   const [isAuthenticated, setAuthentication] = useState(undefined);
   const history = useHistory();
@@ -31,7 +33,19 @@ const Authenticator = () => {
     }
   }, [history, setAuthentication]);
   if (isAuthenticated === undefined) {
-    return <div>Carregando...</div>;
+    return (
+      <Container
+        style={{
+          width: "100%",
+          height: "100%",
+          textAlign: "center",
+          paddingTop: "25vh",
+          color: "#fff",
+        }}
+      >
+        <h1>Carregando...</h1>
+      </Container>
+    );
   }
 
   // Não tá redirecionando quando o usuário tá deslogado
