@@ -58,7 +58,7 @@ const Login = ({ setAuthentication }) => {
           <form onSubmit={handleSubmit(tryLogin)}>
             <h1>Login</h1>
             <div>
-              <InputGroup className="mb-3">
+              <InputGroup>
                 <FormControl
                   onChange={(e) => setValue("user", e.target.value)}
                   ref={register}
