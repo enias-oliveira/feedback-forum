@@ -32,10 +32,10 @@ const Users = () => {
             <tbody>
               {users?.map((user, idx) => (
                 <tr key={idx}>
-                  <td>{user.name}</td>
-                  <td>{user.user}</td>
-                  <td>{user.email}</td>
-                  <td>
+                  <td style={{ width: "30%" }}>{user.name}</td>
+                  <td style={{ width: "30%" }}>{user.user}</td>
+                  <td style={{ width: "30%" }}>{user.email}</td>
+                  <td style={{ width: "10%" }}>
                     {
                       <Link to={{ pathname: `/users/feedbacks/${user.id}` }}>
                         Go To Feedbacks
