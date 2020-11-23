@@ -41,7 +41,7 @@ const Authenticator = () => {
         <Route exact path="/userform">
           <UserForm />
         </Route>
-        <Route path="/">
+        <Route exact path="/">
           <Login setAuthentication={setAuthentication} />
         </Route>
       </Switch>
