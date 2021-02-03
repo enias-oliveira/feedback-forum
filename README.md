@@ -33,7 +33,7 @@
 
 <img src="https://lh3.googleusercontent.com/pw/ACtC-3cNSwvs4QyYwdxxwLXgXyCbQdUZNXunxJV_8gTtCUUsiWjIk0nI-ChdNUpixZxDPpSlkMqdy2nS-T-rbnyQOsjkJ7zG9Fv2gs8ndh4Fd2L5vW_ponNK39TVlspx-LRMzwa7YPFziQua4vDcCA82DFcx=w1271-h910-no?authuser=0" width="400" height="300"/>
 
-Feedback Forum is a simple React application, where users can write feedbacks to other users. I
+Feedback Forum is a simple React application, where users can write feedbacks to other users.
 
 Although it's a simple app, it enables us to learn how to create forms, form validators, send the data to a Back end, and communicating with an API by using the [User-API](https://gitlab.com/kenzie-academy-brasil/demos/q2/projects/users-api).
 
