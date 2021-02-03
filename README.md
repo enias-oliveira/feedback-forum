@@ -68,7 +68,8 @@ We also learned how to work with other Javascript libraries, by reading their do
 <!-- List the features of your application or follow the template. Don't share the figma file here :) -->
 
 - Register an account with a username, email, and password
-  <img src="https://lh3.googleusercontent.com/pw/ACtC-3cxdVg8uqcacsLdLAJmEQlZ0_o0p4xRzTJ1oOzHnU0QUF9V-jMObHcs86XoD_jpgg79ductyrWzFruFybHARwNiF9uKsH03CNs-ZjRqSWIyLfGZSzoinHSgld3S8ShKiAgcNgVff73bxCgfIVPe-wLI=w1273-h913-no?authuser=0" width="400" height="300"/>
+
+<img src="https://lh3.googleusercontent.com/pw/ACtC-3cxdVg8uqcacsLdLAJmEQlZ0_o0p4xRzTJ1oOzHnU0QUF9V-jMObHcs86XoD_jpgg79ductyrWzFruFybHARwNiF9uKsH03CNs-ZjRqSWIyLfGZSzoinHSgld3S8ShKiAgcNgVff73bxCgfIVPe-wLI=w1273-h913-no?authuser=0" width="400" height="300"/><br/>
 
 - Log in with a form that has a validation schema to guarantee proper data is sent to the Back End.
 - See a list with users of all users, their names, and email. The list is paginated.
