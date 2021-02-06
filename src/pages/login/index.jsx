@@ -1,36 +1,21 @@
 import axios from "axios";
-import { useEffect } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 
 import { Formulario } from "./style";
-import Navigation from "../../components/navbar";
 
 import Container from "react-bootstrap/Container";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+
 import { Person, EyeSlash } from "react-bootstrap-icons";
+import NavBar from "../../components/navbar";
 
-const Login = ({ setAuthentication }) => {
-  const {
-    register,
-    unregister,
-    setValue,
-    errors,
-    handleSubmit,
-    setError,
-  } = useForm();
-
-  useEffect(() => {
-    register("user", { required: "Campo precisa ser preenchido" });
-    register("password", { required: "Campo precisa ser preenchido" });
-
-    return () => {
-      unregister("user");
-      unregister("password");
-    };
-  }, [register, unregister]);
+const Login = ({ setToken }) => {
+  const { register, errors, handleSubmit, setError } = useForm();
 
   const history = useHistory();
 
@@ -38,8 +23,7 @@ const Login = ({ setAuthentication }) => {
     axios
       .post("https://ka-users-api.herokuapp.com/authenticate", { ...data })
       .then((res) => {
-        window.localStorage.setItem("authToken", res.data.auth_token);
-        setAuthentication(true);
+        setToken(true);
         history.push("/users");
       })
       .catch((err) => {
@@ -52,48 +36,51 @@ const Login = ({ setAuthentication }) => {
 
   return (
     <>
-      <Navigation />
+      <NavBar />
       <Formulario>
         <Container className="login-form">
-          <form onSubmit={handleSubmit(tryLogin)}>
+          <Form noValidate onSubmit={handleSubmit(tryLogin)}>
             <h1>Login</h1>
-            <div>
-              <InputGroup>
+            <Form.Group controlId="validationReactHookFormEmail">
+              <InputGroup hasValidation>
                 <FormControl
-                  onChange={(e) => setValue("user", e.target.value)}
-                  ref={register}
-                  name="user"
-                  placeholder="Usuário"
+                  ref={register({ required: "Campo precisa ser preenchido" })}
+                  name="email"
+                  type="email"
+                  placeholder="E-mail"
+                  isInvalid={!!errors.email || !!errors.password}
                 />
                 <InputGroup.Append>
                   <InputGroup.Text>
                     <Person />
                   </InputGroup.Text>
                 </InputGroup.Append>
+                <Form.Control.Feedback type="invalid">
+                  {errors.email?.message}
+                </Form.Control.Feedback>
               </InputGroup>
-            </div>
-            {errors.user && (
-              <p style={{ color: "red" }}>{errors.user.message}</p>
-            )}
-            <div>
-              <InputGroup className="mb-3">
+            </Form.Group>
+
+            <Form.Group controlId="validationReactHookFormPassword">
+              <InputGroup className="mb-3" hasValidation>
                 <FormControl
-                  onChange={(e) => setValue("password", e.target.value)}
-                  ref={register}
+                  ref={register({ required: "Campo precisa ser preenchido" })}
                   name="password"
                   type="password"
                   placeholder="Senha"
+                  isInvalid={!!errors.password}
                 />
                 <InputGroup.Append>
                   <InputGroup.Text>
                     <EyeSlash />
                   </InputGroup.Text>
                 </InputGroup.Append>
+                <Form.Control.Feedback type="invalid">
+                  {errors.password?.message}
+                </Form.Control.Feedback>
               </InputGroup>
-            </div>
-            {errors.password && (
-              <p style={{ color: "red " }}>{errors.password.message}</p>
-            )}
+            </Form.Group>
+
             <div className="buttons">
               <Button variant="primary" type="Submit">
                 Login
@@ -105,7 +92,7 @@ const Login = ({ setAuthentication }) => {
                 Cadastrar-se
               </Button>
             </div>
-          </form>
+          </Form>
         </Container>
       </Formulario>
     </>
