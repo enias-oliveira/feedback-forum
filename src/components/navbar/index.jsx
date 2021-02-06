@@ -2,7 +2,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import { useHistory } from "react-router-dom";
 
-const Navigation = () => {
+const NavBar = () => {
   const history = useHistory();
 
   const logoutHandle = () => {
@@ -20,4 +20,4 @@ const Navigation = () => {
   );
 };
 
-export default Navigation;
+export default NavBar;
