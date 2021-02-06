@@ -11,10 +11,14 @@ import NavBar from "../navbar";
 import useToken from "./useToken";
 
 const Authenticator = () => {
-  const { token, setToken } = useToken();
+  const { setToken, token } = useToken();
 
   if (!token) {
-    return <Login />;
+    return (
+      <>
+        <Login setToken={setToken} />
+      </>
+    );
   }
 
   // useEffect(() => {
@@ -66,22 +70,24 @@ const Authenticator = () => {
   // }
 
   return (
-    <Switch>
-      <NavBar />
-      <Route exact path="/">
-        <Login setAuthentication={setToken} />
-      </Route>
-      <Route exact path="/users">
-        <Users />
-      </Route>
-      <Route exact path="/users/feedbacks/:id">
-        <Feedbacks />
-      </Route>
+    <>
+      <Switch>
+        <NavBar />
+        <Route exact path="/">
+          <Login setAuthentication={setToken} />
+        </Route>
+        <Route exact path="/users">
+          <Users />
+        </Route>
+        <Route exact path="/users/feedbacks/:id">
+          <Feedbacks />
+        </Route>
 
-      <Route exact path="/users/feedbacks/:id/new">
-        <FeedbackForm />
-      </Route>
-    </Switch>
+        <Route exact path="/users/feedbacks/:id/new">
+          <FeedbackForm />
+        </Route>
+      </Switch>
+    </>
   );
 };
 

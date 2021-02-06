@@ -7,13 +7,13 @@ import { useHistory } from "react-router-dom";
 
 import { postNewUser } from "./helper.js";
 import { Formulario } from "./style";
-import Navigation from "../../components/navbar";
 
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
+
 const UserForm = () => {
   const [err, useErr] = useState("");
   const history = useHistory();
@@ -51,7 +51,6 @@ const UserForm = () => {
 
   return (
     <>
-      <Navigation />
       <Formulario>
         <Container>
           <form onSubmit={handleSubmit(handleForm)}>
