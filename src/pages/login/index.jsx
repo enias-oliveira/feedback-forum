@@ -13,24 +13,30 @@ import Form from "react-bootstrap/Form";
 
 import { Person, EyeSlash } from "react-bootstrap-icons";
 import NavBar from "../../components/navbar";
+import Spinner from "react-bootstrap/Spinner";
 
 const Login = ({ setToken }) => {
   const { register, errors, handleSubmit, setError } = useForm();
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const history = useHistory();
 
-  const tryLogin = (data) => {
+  const handleLogin = (data) => {
+    setIsLoading(true);
     axios
       .post("https://ka-users-api.herokuapp.com/authenticate", { ...data })
       .then((res) => {
         setToken(true);
         history.push("/users");
       })
+      .then(() => setIsLoading(false))
       .catch((err) => {
         console.log(err.response);
         setError("password", {
           message: "Usuário ou senha inválidos",
         });
+        setIsLoading(false);
       });
   };
 
@@ -39,7 +45,7 @@ const Login = ({ setToken }) => {
       <NavBar />
       <Formulario>
         <Container className="login-form">
-          <Form noValidate onSubmit={handleSubmit(tryLogin)}>
+          <Form noValidate onSubmit={handleSubmit(handleLogin)}>
             <h1>Login</h1>
             <Form.Group controlId="validationReactHookFormEmail">
               <InputGroup hasValidation>
@@ -82,8 +88,8 @@ const Login = ({ setToken }) => {
             </Form.Group>
 
             <div className="buttons">
-              <Button variant="primary" type="Submit">
-                Login
+              <Button variant="primary" type="Submit" size="lg">
+                {isLoading ? <Spinner animation="border" /> : "Login"}
               </Button>
               <Button
                 variant="primary"

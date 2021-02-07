@@ -13,13 +13,18 @@ import Row from "react-bootstrap/Row";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/Button";
+import NavBar from "../../components/navbar";
+import Spinner from "react-bootstrap/Spinner";
 
 const UserForm = () => {
   const [err, useErr] = useState("");
+
+  const [isPosting, setIsPosting] = useState(false);
+
   const history = useHistory();
 
   const handleForm = (data) => {
-    postNewUser(data, history, useErr);
+    postNewUser(data, history, useErr, setIsPosting);
   };
 
   const schema = yup.object().shape({
@@ -51,6 +56,7 @@ const UserForm = () => {
 
   return (
     <>
+      <NavBar />
       <Formulario>
         <Container>
           <form onSubmit={handleSubmit(handleForm)}>
@@ -142,7 +148,9 @@ const UserForm = () => {
             </Row>
 
             <div>
-              <Button type="submit">Enviar</Button>
+              <Button type="submit" size="lg">
+                {isPosting ? <Spinner animation="border" /> : "Enviar"}
+              </Button>
             </div>
           </form>
         </Container>

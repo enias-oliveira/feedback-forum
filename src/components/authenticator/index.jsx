@@ -16,66 +16,22 @@ const Authenticator = () => {
   if (!token) {
     return (
       <>
-        <Login setToken={setToken} />
+        <Switch>
+          <Route exact path="/">
+            <Login setToken={setToken} />
+          </Route>
+          <Route exact path="/userform">
+            <UserForm />
+          </Route>
+        </Switch>
       </>
     );
   }
-
-  // useEffect(() => {
-  //   if (!token) {
-  //     setAuthentication(false);
-  //   } else {
-  //     axios
-  //       .get("https://ka-users-api.herokuapp.com/users", {
-  //         headers: { Authorization: token },
-  //       })
-  //       .then(() => {
-  //         setAuthentication(true);
-  //         history.push("/users");
-  //       })
-  //       .catch(() => {
-  //         setAuthentication(false);
-  //       });
-  //   }
-  // }, [history, setAuthentication]);
-
-  // if (isAuthenticated === undefined) {
-  //   return (
-  //     <Container
-  //       style={{
-  //         width: "100%",
-  //         height: "100%",
-  //         textAlign: "center",
-  //         paddingTop: "25vh",
-  //         color: "#fff",
-  //       }}
-  //     >
-  //       <h1>Carregando...</h1>
-  //     </Container>
-  //   );
-  // }
-
-  // // Não tá redirecionando quando o usuário tá deslogado
-  // if (isAuthenticated === false) {
-  //   return (
-  //     <Switch>
-  //       <Route exact path="/userform">
-  //         <UserForm />
-  //       </Route>
-  //       <Route exact path="/">
-  //         <Login setAuthentication={setAuthentication} />
-  //       </Route>
-  //     </Switch>
-  //   );
-  // }
 
   return (
     <>
       <Switch>
         <NavBar />
-        <Route exact path="/">
-          <Login setAuthentication={setToken} />
-        </Route>
         <Route exact path="/users">
           <Users />
         </Route>

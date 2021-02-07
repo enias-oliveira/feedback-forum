@@ -16,8 +16,13 @@ export const Formulario = styled.div`
     align-items: center;
     margin-top: 25vh;
     background: #fafafa;
-    width: 400px;
-    height: 300px;
+    width: 22.5rem;
+    height: 20rem;
     border-radius: 8px;
+    padding: 2.5rem;
+  }
+
+  h1 {
+    margin-bottom: 1rem;
   }
 `;

@@ -5,8 +5,11 @@ const apiBaseUrl = "https://ka-users-api.herokuapp.com";
 export const postNewUser = (
   { name, user, email, password, password_confirmation },
   history,
-  setErr
+  setErr,
+  setIsPosting
 ) => {
+  setIsPosting(true);
+  console.log("Posted");
   axios
     .post(`${apiBaseUrl}/users`, {
       user: {
@@ -22,6 +25,13 @@ export const postNewUser = (
         password_confirmation: password_confirmation,
       },
     })
-    .then(() => history.push("/login"))
-    .catch((error) => setErr(error.response));
+    .then(() => {
+      setIsPosting(false);
+      history.push("/login");
+    })
+    .catch((error) => {
+      setIsPosting(false);
+      console.log(error.response);
+      setErr(error.response);
+    });
 };
